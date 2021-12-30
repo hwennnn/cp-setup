@@ -7,7 +7,7 @@ import random
 import functools
 import itertools
 import collections
-import heapq
+from heapq import heappush, heappop, heappushpop, heapify
 import bisect
 from collections import Counter, defaultdict, deque
 
@@ -61,7 +61,7 @@ class IOWrapper(IOBase):
         self.readline = lambda: self.buffer.readline().decode("ascii")
 
 
-def cprint(*args, **kwargs):
+def print(*args, **kwargs):
     """Prints the values to a stream, or to sys.stdout by default."""
     sep, file = kwargs.pop("sep", " "), kwargs.pop("file", sys.stdout)
     at_start = True
@@ -76,7 +76,7 @@ def cprint(*args, **kwargs):
 
 
 sys.stdin, sys.stdout = IOWrapper(sys.stdin), IOWrapper(sys.stdout)
-def cinput(): return sys.stdin.readline().rstrip("\r\n")
+def input(): return sys.stdin.readline().rstrip("\r\n")
 
 # endregion
 
