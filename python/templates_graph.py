@@ -20,6 +20,32 @@ class DSU:
     def disconnect(self, x):
         self.graph[x] = x
 
+class DSU:
+    def __init__(self, n):
+        self.parent = [i for i in range(n)]
+        self.rank = [0 for i in range(n)]
+
+    def find(self, x):
+        if self.parent[x] == x:
+            return self.parent[x]
+        self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
+
+    def union(self, u, v):
+        pu = self.find(u)
+        pv = self.find(v)
+
+        if self.rank[pu] < self.rank[v]:
+            pu, pv = pv, pu
+
+        self.parent[pv] = pu
+        self.rank[pu] += self.rank[pv]
+
+    def count(self):
+        par_set = set()
+        for parent in self.parent:
+            par_set.add(self.find(parent))
+        return len(par_set)
 
 class UnionFind:
     def __init__(self):
