@@ -1,3 +1,23 @@
+# ----------------------------------- Binary Indexed Tree -----------------------------------
+class BIT:
+    def __init__(self, N: int):
+        self.stree = [-1] * (N + 1)
+    
+    def change(self, i, x):
+        while i < len(self.stree):
+            self.stree[i] = max(x, self.stree[i])
+            i |= (i + 1)
+    
+    def query(self, i):
+        s = -1
+
+        while i >= 0:
+            s = max(s, self.stree[i])
+            i &= i + 1
+            i -= 1
+        
+        return s
+
 # ----------------------------------- Trie -----------------------------------
 class Trie:
     # https://github.com/cheran-senthil/PyRival/blob/master/pyrival/data_structures/Trie.py
